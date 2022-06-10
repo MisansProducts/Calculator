@@ -58,49 +58,49 @@ def add(l, start, end):
 
 #======Main======
 def main():
-	#Stored Answer
-	ans = 0
-	#While Loop
+	ans = 0 # Stored answer
 	while True:
-		#Reset Variable
-		reset = 0
-		#Expression Input
+		reset = False #Reset variable
+
+		#Expression input
 		l, operations = input("Expression: "), ["+", "-", "*", "/"]
+
+		#Exit function
 		if l.lower() == "stop":
 			return print("Stopping the calculator.")
-		l = l.replace(" ", "" , -1) # Removes all whitespace
-		for i in operations:
-			l = l.replace(i, f" {i} ", -1) # Adds 1 space before and after operations
+		
+		#Removes all whitespace
+		l = l.replace(" ", "" , -1)
+
+		#Splits the input string by its operators and operands then converts it to a list data type
+		for operator in operations:
+			l = l.replace(operator, f" {operator} ", -1) #Adds 1 space before and after operations
 		l = list(l.split())
-		print(l)
-		#Parsers Elements To Float
+
+		print(l) #Shows the list
+
+		#Goes through each element in the list
+		invalid = [] #Invalid inputs
 		for i in range(len(l)):
 			try:
-				l[i] = float(l[i])
+				l[i] = float(l[i]) #Parse element to float
 			except ValueError:
-				#Invalid Input
 				if l[i] not in operations:
-					#Stops The Program
-					if "stop" in l[i].lower():
-						return print("Stopping the calculator.")
-					#Stored Answer
+					#Stored answer
 					if "ans" in l[i].lower():
 						l[i] = ans
-					#Invalid Input
+					#Invalid input
 					else:
-						temp = []
-						for j in range(len(l)):
-							if l[j] not in operations and not isinstance(l[j], float):
-								temp.append(l[j])
-						print("Invalid inputs:", *temp)
-						reset = 1
-						break
+						invalid.append(l[i]) #Adds invalid inputs to list
+						reset = True #Restarts the calculator
 				else:
 					pass
 		#Reset
-		if reset == 1:
+		if reset:
+			print("Invalid inputs:", end = ' ')
+			print(*invalid, sep = ', ', end = '\n')
 			continue
-		#Automatic Stored Answer
+		#Automatic stored answer
 		if not isinstance(l[0], float):
 			l.insert(0, ans)
 
@@ -118,4 +118,3 @@ def main():
 if __name__ == '__main__':
 	print("Running the calculator. Type \"STOP\" to exit.")
 	main()
-	input() # Does not automatically close
