@@ -6,6 +6,7 @@ This was my attempt at creating an algebraic calculator. Currently, you input an
 
 Features include:
 * Input any expression with addition (+), subtraction (-), multiplication (*), and division (/)
+* Grouping symbols ()
 * Will use order of operations to simplify
     * Regardless of whitespace
 * Enter 'ans' to use the previous answer or start the expression with an operator
