@@ -115,7 +115,7 @@ def calc(expression):
 
 #======Main======
 def main():
-	ans = 0 # Stored answer
+	ans = float(0) # Stored answer
 	while True:
 		reset = False #Reset variable
 
@@ -184,9 +184,11 @@ def main():
 			continue
 		#Automatic stored answer
 		if not isinstance(l[0], float):
-			allowedSymbols = ("-", "(", ")")
+			allowedSymbols = ("(", ")")
 			if l[0] not in allowedSymbols:
 				l.insert(0, ans)
+		#Fix subtraction crash
+		if l[-1] == "-": l.append(float(0))
 		#Fix grouping symbols
 		oCount = l.count("(") #Open grouping symbol count
 		cCount = l.count(")") #Closed grouping symbol count
