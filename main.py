@@ -41,6 +41,7 @@ def group(l, start, end):
 	#Can be more efficient by doing 1 loop
 	for i in range(oLast + 1, cFirst):
 		newL.append(l[i])
+	if len(newL) == 0: newL.append(float(0))
 	#Semi-recursion
 	l[oLast] = calc(newL)
 	#Simplifies expression
