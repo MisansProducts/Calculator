@@ -84,8 +84,11 @@ def multidiv(l, start, end):
 			break
 		#Detects
 		elif l[i] == "/":
-			#Divides Number
-			l[i - 1] /= l[i + 1]
+			try:
+				#Divides Number
+				l[i - 1] /= l[i + 1]
+			except ZeroDivisionError:
+				print("Cannot divide by 0; removing operation")
 			#Pops
 			l.pop(i), l.pop(i)
 			break
